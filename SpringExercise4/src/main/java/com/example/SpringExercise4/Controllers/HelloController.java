@@ -13,4 +13,8 @@ public class HelloController {
         return ResponseEntity.ok("Hola a todos! Saludos desde HelloController");
     }
 
+    @GetMapping("/helloSecurity")
+    public ResponseEntity<String> SaludarSecurity(){
+        return ResponseEntity.ok("Hola a todos! Saludos desde HelloController, metodo con login");
+    }
 }

@@ -43,19 +43,27 @@ class LaptopControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(200, response.getStatusCodeValue());
         List<Laptop> laptops = Arrays.asList(response.getBody());
-        assertEquals(1, laptops.size());
+        //Línea para testear método por método
+        //assertEquals(1, laptops.size());
+        //Línea para testear todos los métodos en una ejecución
+        assertEquals(2, laptops.size());
     }
 
     @Test
     void findOneById() {
         create();
         ResponseEntity<Laptop> response =
-                testRestTemplate.getForEntity("/laptop/oneById?id=1", Laptop.class);
-
+                //Línea para testear método por método
+                //testRestTemplate.getForEntity("/laptop/oneById?id=1", Laptop.class);
+                //Línea para testear todos los métodos en una ejecución
+                testRestTemplate.getForEntity("/laptop/oneById?id=4", Laptop.class);
         Laptop result = response.getBody();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(1L,result.getId());
+        //Línea para testear método por método
+        //assertEquals(1L,result.getId());
+        //Línea para testear todos los métodos en una ejecución
+        assertEquals(4L, result.getId());
         assertEquals("SpringTestLaptop", result.getBrand());
     }
 
@@ -79,7 +87,9 @@ class LaptopControllerTest {
         Laptop result = response.getBody();
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(201, response.getStatusCodeValue());
-        assertEquals(1L,result.getId());
+        //Deshabilitar la siguiente línea para testear todos los test de la clase en una ejecución.
+        //Habilitar para testear método por método
+        //assertEquals(1L,result.getId());
         assertEquals("SpringTestLaptop", result.getBrand());
     }
 
@@ -90,7 +100,9 @@ class LaptopControllerTest {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         String json = "{\n" +
-                "    \"id\": 1,\n" +
+                //Pasar "id": 1 para testear método por método,
+                //pasar "id": 3 para testear todos los métodos en una ejecución
+                "    \"id\": 3,\n" +
                 "    \"brand\": \"SpringTestLaptop Cambiado\",\n" +
                 "    \"model\": \"SM-550T\",\n" +
                 "    \"releaseDate\": \"2022-02-25\",\n" +
@@ -122,7 +134,10 @@ class LaptopControllerTest {
         ResponseEntity<Laptop[]> response2 =
                 testRestTemplate.getForEntity("/laptop/all", Laptop[].class);
         List<Laptop> laptops = Arrays.asList(response2.getBody());
-        assertEquals(0, laptops.size());
+        //Línea para testear método por método
+        //assertEquals(0, laptops.size());
+        //Línea para testear todos los métodos en una ejecución
+        assertEquals(1, laptops.size());
     }
 
     @Test
