@@ -1,16 +1,21 @@
 package com.example.SpringExercise4.Entities;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Laptops")
+@ApiModel("Entidad Laptop para representar las distintas Laptops disponibles en el shop")
 public class Laptop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String brand;
+    @ApiModelProperty("Modelo (no marca) de la Laptop seleccionada")
     private String model;
     private LocalDate releaseDate;
     private String cpu;
